@@ -14,3 +14,7 @@ categories = ["command-line-utilities"]
 
 [dependencies]
 clap = { version = "4.5.1", features = ["derive"] }
+
+[[bin]]
+name = "dawn"
+path = "src/main.rs"
