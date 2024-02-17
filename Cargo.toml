@@ -15,6 +15,7 @@ categories = ["command-line-utilities"]
 [dependencies]
 clap = { version = "4.5.1", features = ["derive"] }
 dirs = "5.0"
+rusqlite = { version = "0.30.0", features = ["bundled", "chrono"] }
 
 [[bin]]
 name = "dawn"
