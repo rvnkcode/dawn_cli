@@ -13,3 +13,4 @@ keywords = ["CLI", "task", "to-do", "productivity", "GTD"]
 categories = ["command-line-utilities"]
 
 [dependencies]
+clap = { version = "4.5.1", features = ["derive"] }
