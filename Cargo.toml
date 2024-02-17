@@ -3,6 +3,13 @@
 [package]
 name = "dawn_cli"
 version = "0.1.0"
+authors = ["KSY <sykim.p508@gmail.com>"]
 edition = "2021"
+description = "A FOSS CLI task management tool"
+readme = "README.md"
+repository = "https://github.com/rvnkcode/dawn_cli.git"
+license = "MIT"
+keywords = ["CLI", "task", "to-do", "productivity", "GTD"]
+categories = ["command-line-utilities"]
 
 [dependencies]
