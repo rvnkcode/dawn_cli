@@ -14,7 +14,6 @@ erDiagram
     CONTACT |o--o{ TASK : ""
     CONTEXT |o--o{ TASK : has
     PROJECT |o--o{ TASK : has
-    PRIORITY_MASTER |o--o{ TASK : ""
     TASK ||--o{ SUB_TASK : contains
     TASK ||--o{ TASK_TAG : ""
     TAG ||--o{ TASK_TAG : ""
@@ -39,14 +38,9 @@ erDiagram
         DATETIME deleted_at
     }
 
-    PRIORITY_MASTER {
-        INT id PK
-        TEXT priority UK
-    }
-
     TASK {
         TEXT id PK
-        INT priority_id FK "priority_master.id"
+        TEXT priority
         TEXT title
         TEXT note
         TEXT project_id FK "project.id"
@@ -99,13 +93,6 @@ Alphabetical
 | id      | INT  | PK               | > task.context_id | AUTOINCREMENT |       |
 | context | TEXT | NOT NULL, UNIQUE |                   |               |       |
 
-### priority_master
-
-| Name     | Type | Settings         | References         | Default Value | Notes      |
-| -------- | ---- | ---------------- | ------------------ | ------------- | ---------- |
-| id       | INT  | PK               | > task.priority_id | AUTOINCREMENT |            |
-| priority | TEXT | NOT NULL, UNIQUE |                    |               | A, B, C, D |
-
 ### project
 
 | Name        | Type     | Settings | References        | Default Value     | Notes                                |
@@ -136,22 +123,22 @@ Alphabetical
 
 ### task
 
-| Name           | Type     | Settings | References                                  | Default Value     | Notes                                |
-| -------------- | -------- | -------- | ------------------------------------------- | ----------------- | ------------------------------------ |
-| id             | TEXT     | PK       | > sub_task.parent_id<br/>> task_tag.task_id |                   | Nano ID<br />CHECK(length(id) == 15) |
-| priority_id    | INT      | FK       | priority_master.id <                        |                   |                                      |
-| title          | TEXT     | NOT NULL |                                             |                   |                                      |
-| note           | TEXT     |          |                                             |                   |                                      |
-| project_id     | TEXT     | FK       | project.id <                                |                   |                                      |
-| context_id     | INT      | FK       | context.id <                                |                   |                                      |
-| delegated_to   | TEXT     | FK       | contact.id <                                |                   |                                      |
-| due_date       | DATE     |          |                                             |                   | deadline                             |
-| created_at     | DATETIME | NOT NULL |                                             | CURRENT_TIMESTAMP |                                      |
-| started_at     | DATETIME |          |                                             |                   |                                      |
-| scheduled_date | DATE     |          |                                             |                   |                                      |
-| completed_at   | DATETIME |          |                                             |                   |                                      |
-| updated_at     | DATETIME | NOT NULL |                                             | CURRENT_TIMESTAMP |                                      |
-| deleted_at     | DATETIME |          |                                             |                   |                                      |
+| Name           | Type     | Settings | References                                  | Default Value     | Notes                                                     |
+| -------------- | -------- | -------- | ------------------------------------------- | ----------------- | --------------------------------------------------------- |
+| id             | TEXT     | PK       | > sub_task.parent_id<br/>> task_tag.task_id |                   | Nano ID<br />CHECK(length(id) == 15)                      |
+| priority       | TEXT     |          |                                             |                   | CHECK(length(priority == 1) AND priority GLOB '[A-Za-z]') |
+| title          | TEXT     | NOT NULL |                                             |                   |                                                           |
+| note           | TEXT     |          |                                             |                   |                                                           |
+| project_id     | TEXT     | FK       | project.id <                                |                   |                                                           |
+| context_id     | INT      | FK       | context.id <                                |                   |                                                           |
+| delegated_to   | TEXT     | FK       | contact.id <                                |                   |                                                           |
+| due_date       | DATE     |          |                                             |                   | deadline                                                  |
+| created_at     | DATETIME | NOT NULL |                                             | CURRENT_TIMESTAMP |                                                           |
+| started_at     | DATETIME |          |                                             |                   |                                                           |
+| scheduled_date | DATE     |          |                                             |                   |                                                           |
+| completed_at   | DATETIME |          |                                             |                   |                                                           |
+| updated_at     | DATETIME | NOT NULL |                                             | CURRENT_TIMESTAMP |                                                           |
+| deleted_at     | DATETIME |          |                                             |                   |                                                           |
 
 ### task_tag
 
