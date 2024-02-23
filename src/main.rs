@@ -20,9 +20,14 @@ fn check_dir(path: &PathBuf) -> PathBuf {
 
 fn check_db(path: &PathBuf) {
     let conn = Connection::open(path).unwrap();
-    // TODO: Check if the DB schema is fine
-    /*
-    conn.pragma_query_value("dawn", "user_version", |row| row.get(0)).unwrap();
-    conn.execute_batch(include_str!("./sql/create_schema.sql")).expect("");
-    */
+    let user_version: u32 = conn
+        .pragma_query_value(None, "user_version", |row| row.get(0))
+        .unwrap();
+    // TODO: backup DB
+    // println!("{user_version}");
+    if user_version != 1 {
+        conn.execute_batch(include_str!("./sql/create_schema.sql"))
+            .expect("");
+    }
+    // TODO: restore backup
 }
