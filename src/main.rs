@@ -12,14 +12,14 @@ fn define_path() -> PathBuf {
 }
 
 fn check_dir(path: &PathBuf) -> PathBuf {
-    if !&path.exists() {
-        fs::create_dir(&path).unwrap();
+    if !path.exists() {
+        fs::create_dir(path).unwrap();
     }
     path.join("dawn.db")
 }
 
 fn check_db(path: &PathBuf) {
-    let _conn = Connection::open(&path).unwrap();
+    let conn = Connection::open(path).unwrap();
     // TODO: Check if the DB schema is fine
     /*
     conn.pragma_query_value("dawn", "user_version", |row| row.get(0)).unwrap();
