@@ -2,8 +2,8 @@ use rusqlite::Connection;
 use std::{fs, path::PathBuf};
 
 fn main() {
-    let path = define_path();
-    let path = check_dir(&path);
+    let mut path = define_path();
+    path = check_dir(&path);
     check_db(&path);
 }
 
