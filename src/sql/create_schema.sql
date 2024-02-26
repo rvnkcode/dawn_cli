@@ -1,5 +1,4 @@
-DROP TABLE IF EXISTS task;
-
+-- From user_version 0 to 1
 CREATE TABLE IF NOT EXISTS task (
     id TEXT PRIMARY KEY CHECK (length(id) = 15),
     title TEXT NOT NULL,
