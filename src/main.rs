@@ -20,7 +20,8 @@ fn check_dir(path: &PathBuf) -> PathBuf {
 
 fn check_db(path: &PathBuf) {
     let conn = Connection::open(path).unwrap();
-    let user_version: u32 = conn
+    // 0-255
+    let user_version: u8 = conn
         .pragma_query_value(None, "user_version", |row| row.get(0))
         .unwrap();
     // TODO: backup DB
