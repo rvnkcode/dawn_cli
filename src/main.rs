@@ -28,7 +28,7 @@ fn check_db(path: &PathBuf) {
     // println!("{user_version}");
     if user_version != 1 {
         conn.execute_batch(include_str!("./sql/create_schema.sql"))
-            .expect("");
+            .unwrap();
     }
     // TODO: restore backup
 }
