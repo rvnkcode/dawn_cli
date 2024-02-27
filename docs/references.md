@@ -5,6 +5,7 @@
 - [The Rust Programming Language](https://doc.rust-lang.org/book/title-page.html)
 - [The Rust Programming Language (KOR)](https://doc.rust-kr.org)
 - [Naming - Rust API Guidelines](https://rust-lang.github.io/api-guidelines/naming.html)
+- [Introduction - Rust Design Patterns](https://rust-unofficial.github.io/patterns/)
 
 ### Crates
 
