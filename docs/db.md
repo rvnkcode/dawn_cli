@@ -46,10 +46,10 @@ erDiagram
         TEXT project_id FK "project.id"
         INT context_id FK "context.id"
         TEXT delegated_to FK "contact.id"
+        DATE planned_date
         DATE due_date
         DATETIME created_at
         DATETIME started_at
-        DATE planned_date
         DATETIME completed_at
         DATETIME updated_at
         DATETIME deleted_at
@@ -132,10 +132,10 @@ Alphabetical
 | project_id   | TEXT     | FK       | project.id <                                |                   |                                      |
 | context_id   | INT      | FK       | context.id <                                |                   |                                      |
 | delegated_to | TEXT     | FK       | contact.id <                                |                   |                                      |
+| planned_date | DATE     |          |                                             |                   |                                      |
 | due_date     | DATE     |          |                                             |                   | deadline                             |
 | created_at   | DATETIME | NOT NULL |                                             | CURRENT_TIMESTAMP |                                      |
 | started_at   | DATETIME |          |                                             |                   |                                      |
-| planned_date | DATE     |          |                                             |                   |                                      |
 | completed_at | DATETIME |          |                                             |                   |                                      |
 | updated_at   | DATETIME | NOT NULL |                                             | CURRENT_TIMESTAMP |                                      |
 | deleted_at   | DATETIME |          |                                             |                   |                                      |
