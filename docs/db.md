@@ -49,7 +49,7 @@ erDiagram
         DATE due_date
         DATETIME created_at
         DATETIME started_at
-        DATE scheduled_date
+        DATE planned_date
         DATETIME completed_at
         DATETIME updated_at
         DATETIME deleted_at
@@ -123,22 +123,22 @@ Alphabetical
 
 ### task
 
-| Name           | Type     | Settings | References                                  | Default Value     | Notes                                                     |
-| -------------- | -------- | -------- | ------------------------------------------- | ----------------- | --------------------------------------------------------- |
-| id             | TEXT     | PK       | > sub_task.parent_id<br/>> task_tag.task_id |                   | Nano ID<br />CHECK(length(id) == 15)                      |
-| priority       | TEXT     |          |                                             |                   | CHECK(length(priority == 1) AND priority GLOB '[A-Za-z]') |
-| title          | TEXT     | NOT NULL |                                             |                   |                                                           |
-| note           | TEXT     |          |                                             |                   |                                                           |
-| project_id     | TEXT     | FK       | project.id <                                |                   |                                                           |
-| context_id     | INT      | FK       | context.id <                                |                   |                                                           |
-| delegated_to   | TEXT     | FK       | contact.id <                                |                   |                                                           |
-| due_date       | DATE     |          |                                             |                   | deadline                                                  |
-| created_at     | DATETIME | NOT NULL |                                             | CURRENT_TIMESTAMP |                                                           |
-| started_at     | DATETIME |          |                                             |                   |                                                           |
-| scheduled_date | DATE     |          |                                             |                   |                                                           |
-| completed_at   | DATETIME |          |                                             |                   |                                                           |
-| updated_at     | DATETIME | NOT NULL |                                             | CURRENT_TIMESTAMP |                                                           |
-| deleted_at     | DATETIME |          |                                             |                   |                                                           |
+| Name         | Type     | Settings | References                                  | Default Value     | Notes                                                     |
+| ------------ | -------- | -------- | ------------------------------------------- | ----------------- | --------------------------------------------------------- |
+| id           | TEXT     | PK       | > sub_task.parent_id<br/>> task_tag.task_id |                   | Nano ID<br />CHECK(length(id) == 15)                      |
+| priority     | TEXT     |          |                                             |                   | CHECK(length(priority == 1) AND priority GLOB '[A-Za-z]') |
+| title        | TEXT     | NOT NULL |                                             |                   |                                                           |
+| note         | TEXT     |          |                                             |                   |                                                           |
+| project_id   | TEXT     | FK       | project.id <                                |                   |                                                           |
+| context_id   | INT      | FK       | context.id <                                |                   |                                                           |
+| delegated_to | TEXT     | FK       | contact.id <                                |                   |                                                           |
+| due_date     | DATE     |          |                                             |                   | deadline                                                  |
+| created_at   | DATETIME | NOT NULL |                                             | CURRENT_TIMESTAMP |                                                           |
+| started_at   | DATETIME |          |                                             |                   |                                                           |
+| planned_date | DATE     |          |                                             |                   |                                                           |
+| completed_at | DATETIME |          |                                             |                   |                                                           |
+| updated_at   | DATETIME | NOT NULL |                                             | CURRENT_TIMESTAMP |                                                           |
+| deleted_at   | DATETIME |          |                                             |                   |                                                           |
 
 ### task_tag
 
