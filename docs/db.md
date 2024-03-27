@@ -26,7 +26,7 @@ erDiagram
 
     CONTEXT {
         INT id PK
-        TEXT context UK
+        TEXT name UK
     }
 
     PROJECT {
@@ -88,10 +88,10 @@ Alphabetical
 
 ### context
 
-| Name    | Type | Settings         | References        | Default Value | Notes |
-| ------- | ---- | ---------------- | ----------------- | ------------- | ----- |
-| id      | INT  | PK               | > task.context_id | AUTOINCREMENT |       |
-| context | TEXT | NOT NULL, UNIQUE |                   |               |       |
+| Name | Type | Settings         | References        | Default Value | Notes |
+| ---- | ---- | ---------------- | ----------------- | ------------- | ----- |
+| id   | INT  | PK               | > task.context_id | AUTOINCREMENT |       |
+| name | TEXT | NOT NULL, UNIQUE |                   |               |       |
 
 ### project
 
