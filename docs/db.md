@@ -59,8 +59,8 @@ erDiagram
         TEXT id PK
         TEXT parent_id FK "task.id"
         TEXT title
-        BOOLEAN is_checked
         DATETIME created_at
+        DATETIME completed_at
     }
 
     TAG {
@@ -80,11 +80,11 @@ Alphabetical
 
 ### contact
 
-| Name       | Type     | Settings         | References          | Default Value     | Notes |
-| ---------- | -------- | ---------------- | ------------------- | ----------------- | ----- |
-| id         | TEXT     | PK               | > task.delegated_to |                   |       |
-| name       | TEXT     | NOT NULL, UNIQUE |                     |                   |       |
-| created_at | DATETIME | NOT NULL         |                     | CURRENT_TIMESTAMP |       |
+| Name       | Type     | Settings         | References          | Default Value     | Notes                               |
+| ---------- | -------- | ---------------- | ------------------- | ----------------- | ----------------------------------- |
+| id         | TEXT     | PK               | > task.delegated_to |                   | Nano ID<br />CHECK(length(id) = 15) |
+| name       | TEXT     | NOT NULL, UNIQUE |                     |                   |                                     |
+| created_at | DATETIME | NOT NULL         |                     | CURRENT_TIMESTAMP |                                     |
 
 ### context
 
@@ -95,24 +95,24 @@ Alphabetical
 
 ### project
 
-| Name        | Type     | Settings | References        | Default Value     | Notes                                |
-| ----------- | -------- | -------- | ----------------- | ----------------- | ------------------------------------ |
-| id          | TEXT     | PK       | > task.project_id |                   | Nano ID<br />CHECK(length(id) == 15) |
-| title       | TEXT     | NOT NULL |                   |                   |                                      |
-| description | TEXT     |          |                   |                   |                                      |
-| created_at  | DATETIME | NOT NULL |                   | CURRENT_TIMESTAMP |                                      |
-| updated_at  | DATETIME | NOT NULL |                   | CURRENT_TIMESTAMP |                                      |
-| deleted_at  | DATETIME |          |                   |                   |                                      |
+| Name        | Type     | Settings | References        | Default Value     | Notes                               |
+| ----------- | -------- | -------- | ----------------- | ----------------- | ----------------------------------- |
+| id          | TEXT     | PK       | > task.project_id |                   | Nano ID<br />CHECK(length(id) = 15) |
+| title       | TEXT     | NOT NULL |                   |                   |                                     |
+| description | TEXT     |          |                   |                   |                                     |
+| created_at  | DATETIME | NOT NULL |                   | CURRENT_TIMESTAMP |                                     |
+| updated_at  | DATETIME | NOT NULL |                   | CURRENT_TIMESTAMP |                                     |
+| deleted_at  | DATETIME |          |                   |                   |                                     |
 
 ### sub_task
 
-| Name       | Type     | Settings     | References | Default Value     | Notes                                |
-| ---------- | -------- | ------------ | ---------- | ----------------- | ------------------------------------ |
-| id         | TEXT     | PK           |            |                   | Nano ID<br />CHECK(length(id) == 15) |
-| parent_id  | TEXT     | FK, NOT NULL | task.id <  |                   |                                      |
-| title      | TEXT     | NOT NULL     |            |                   |                                      |
-| is_checked | BOOLEAN  | NOT NULL     |            | 0                 |                                      |
-| created_at | DATETIME | NOT NULL     |            | CURRENT_TIMESTAMP |                                      |
+| Name         | Type     | Settings     | References | Default Value     | Notes                               |
+| ------------ | -------- | ------------ | ---------- | ----------------- | ----------------------------------- |
+| id           | TEXT     | PK           |            |                   | Nano ID<br />CHECK(length(id) = 15) |
+| parent_id    | TEXT     | FK, NOT NULL | task.id <  |                   |                                     |
+| title        | TEXT     | NOT NULL     |            |                   |                                     |
+| created_at   | DATETIME | NOT NULL     |            | CURRENT_TIMESTAMP |                                     |
+| completed_at | DATETIME | NOT NULL     |            |                   |                                     |
 
 ### tag
 
@@ -123,22 +123,22 @@ Alphabetical
 
 ### task
 
-| Name         | Type     | Settings | References                                  | Default Value     | Notes                                |
-| ------------ | -------- | -------- | ------------------------------------------- | ----------------- | ------------------------------------ |
-| id           | TEXT     | PK       | > sub_task.parent_id<br/>> task_tag.task_id |                   | Nano ID<br />CHECK(length(id) == 15) |
-| priority     | TEXT     |          |                                             |                   | CHECK(priority GLOB '[A-Z]')         |
-| title        | TEXT     | NOT NULL |                                             |                   |                                      |
-| note         | TEXT     |          |                                             |                   |                                      |
-| project      | TEXT     | FK       | project.id <                                |                   |                                      |
-| context      | INT      | FK       | context.id <                                |                   |                                      |
-| delegated_to | TEXT     | FK       | contact.id <                                |                   |                                      |
-| due_date     | DATE     |          |                                             |                   | deadline                             |
-| planned_date | DATE     |          |                                             |                   |                                      |
-| created_at   | DATETIME | NOT NULL |                                             | CURRENT_TIMESTAMP |                                      |
-| started_at   | DATETIME |          |                                             |                   |                                      |
-| completed_at | DATETIME |          |                                             |                   |                                      |
-| updated_at   | DATETIME | NOT NULL |                                             | CURRENT_TIMESTAMP |                                      |
-| deleted_at   | DATETIME |          |                                             |                   |                                      |
+| Name         | Type     | Settings | References                                  | Default Value     | Notes                               |
+| ------------ | -------- | -------- | ------------------------------------------- | ----------------- | ----------------------------------- |
+| id           | TEXT     | PK       | > sub_task.parent_id<br/>> task_tag.task_id |                   | Nano ID<br />CHECK(length(id) = 15) |
+| priority     | TEXT     |          |                                             |                   | CHECK(priority GLOB '[A-Z]')        |
+| title        | TEXT     | NOT NULL |                                             |                   |                                     |
+| note         | TEXT     |          |                                             |                   |                                     |
+| project      | TEXT     | FK       | project.id <                                |                   |                                     |
+| context      | INT      | FK       | context.id <                                |                   |                                     |
+| delegated_to | TEXT     | FK       | contact.id <                                |                   |                                     |
+| due_date     | DATE     |          |                                             |                   | deadline                            |
+| planned_date | DATE     |          |                                             |                   |                                     |
+| created_at   | DATETIME | NOT NULL |                                             | CURRENT_TIMESTAMP |                                     |
+| started_at   | DATETIME |          |                                             |                   |                                     |
+| completed_at | DATETIME |          |                                             |                   |                                     |
+| updated_at   | DATETIME | NOT NULL |                                             | CURRENT_TIMESTAMP |                                     |
+| deleted_at   | DATETIME |          |                                             |                   |                                     |
 
 ### task_tag
 
