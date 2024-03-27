@@ -129,8 +129,8 @@ Alphabetical
 | priority     | TEXT     |          |                                             |                   | CHECK(priority GLOB '[A-Z]')         |
 | title        | TEXT     | NOT NULL |                                             |                   |                                      |
 | note         | TEXT     |          |                                             |                   |                                      |
-| project_id   | TEXT     | FK       | project.id <                                |                   |                                      |
-| context_id   | INT      | FK       | context.id <                                |                   |                                      |
+| project      | TEXT     | FK       | project.id <                                |                   |                                      |
+| context      | INT      | FK       | context.id <                                |                   |                                      |
 | delegated_to | TEXT     | FK       | contact.id <                                |                   |                                      |
 | due_date     | DATE     |          |                                             |                   | deadline                             |
 | planned_date | DATE     |          |                                             |                   |                                      |
